@@ -3,11 +3,18 @@ var tasks = {};
 var loadTasks = function () {
     tasks = JSON.parse(localStorage.getItem("tasks"));
     // loop over object properties
-    $.each(tasks, function (row, arr) {
+    console.log(tasks)
+    $.each(tasks, function (task, arr) {
         //console.log(list, arr);
         // then loop over sub-array
-        arr.forEach(function (task) {
-            $("#" + task.hour + "-text").text(task.text);
+        arr.forEach(function (task,index) {
+            if (task.day === $("#currentDay").text()){
+                $("#" + task.hour + "-text").text(task.text);
+            }
+            else{
+                tasks.task.splice(index,1);
+            }
+            
         });
     });
 
@@ -22,6 +29,7 @@ var loadTasks = function () {
 var getTodaysDate = function () {
     //sets current date and adds it to the DOM
     $("#currentDay").text(moment().format("dddd, MMMM Do"));
+    console.log($("#currentDay").text())
 }
 
 var createTimeBlock = function (hour) {
@@ -142,16 +150,29 @@ $(".saveBtn").on("click", function () {
     var text = $("#" + hour + "-text").val();
 
     var task = {
+        day: "",
         hour: "",
         text: ""
     }
 
     //var calendarHour = moment(hour,"hA").format("H"); //turns time into 24 hour time (ex: 2PM = 14)
-    task.hour = hour;
-    task.text = text;
+
+    task.hour = "12AM";
+    task.text = "Date test";
+    task.day = "Saturday, December 4th";
+    console.log(task);
     tasks.task.push(task);
     //tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+    // task.hour = hour;
+    // task.text = text;
+    // task.day = $("#currentDay").text()
+    // console.log(task);
+    // tasks.task.push(task);
+    // //tasks.push(task);
+    // localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
 setInterval(function () {
