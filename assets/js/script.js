@@ -1,11 +1,21 @@
-var tasks = [];
+var tasks = {};
 
 var loadTasks = function () {
     tasks = JSON.parse(localStorage.getItem("tasks"));
     // loop over object properties
-    $.each(tasks, function (index) {
-        $("#" + tasks[index].hour + "-text").text(tasks[index].text);            
+    $.each(tasks, function (row, arr) {
+        //console.log(list, arr);
+        // then loop over sub-array
+        arr.forEach(function (task) {
+            $("#" + task.hour + "-text").text(task.text);
+        });
     });
+
+    if (!tasks) {
+        tasks = {
+            task: [],
+        };
+    }
 
 }
 
@@ -139,7 +149,8 @@ $(".saveBtn").on("click", function () {
     //var calendarHour = moment(hour,"hA").format("H"); //turns time into 24 hour time (ex: 2PM = 14)
     task.hour = hour;
     task.text = text;
-    tasks.push(task);
+    tasks.task.push(task);
+    //tasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
