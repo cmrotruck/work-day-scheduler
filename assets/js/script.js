@@ -4,7 +4,7 @@ var loadTasks = function () {
     tasks = JSON.parse(localStorage.getItem("tasks"));
     // loop over object properties
     $.each(tasks, function (index) {
-            $("#" + tasks[index].hour + "-text").text(tasks[index].text);            
+        $("#" + tasks[index].hour + "-text").text(tasks[index].text);            
     });
 
 }
