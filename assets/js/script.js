@@ -167,7 +167,7 @@ $(".saveBtn").on("click", function () {
 
 
     task.hour = hour;
-    task.text = text;
+    task.text = text; 
     task.day = $("#currentDay").text()
     console.log(task);
     tasks.task.push(task);
