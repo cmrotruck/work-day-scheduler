@@ -157,22 +157,22 @@ $(".saveBtn").on("click", function () {
 
     //var calendarHour = moment(hour,"hA").format("H"); //turns time into 24 hour time (ex: 2PM = 14)
 
-    task.hour = "12AM";
-    task.text = "Date test";
-    task.day = "Saturday, December 4th";
-    console.log(task);
-    tasks.task.push(task);
-    //tasks.push(task);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-
-
-    // task.hour = hour;
-    // task.text = text;
-    // task.day = $("#currentDay").text()
+    // task.hour = "12AM";
+    // task.text = "Date test";
+    // task.day = "Saturday, December 4th";
     // console.log(task);
     // tasks.task.push(task);
     // //tasks.push(task);
     // localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+    task.hour = hour;
+    task.text = text;
+    task.day = $("#currentDay").text()
+    console.log(task);
+    tasks.task.push(task);
+    //tasks.push(task);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
 setInterval(function () {
